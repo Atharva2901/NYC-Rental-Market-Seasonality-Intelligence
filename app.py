@@ -41,14 +41,14 @@ metrics = vryfid_growth_metrics
 col1, col2, col3, col4 = st.columns(4)
 
 col1.metric(
-    label="Peak Monthly Leases (Jul)",
+    label="Peak Monthly Leases (Aug)",
     value=f"{metrics['peak_lease_volume']['value']:,}",
-    delta="Record high for July",
+    delta="Record high for August",
 )
 col2.metric(
-    label="Winter Trough (Nov)",
+    label="Winter Trough (Jan)",
     value=f"{metrics['winter_trough_volume']['value']:,}",
-    delta="-56% vs peak",
+    delta="-52% vs peak",
     delta_color="inverse",
 )
 col3.metric(
@@ -66,7 +66,8 @@ st.markdown("---")
 
 st.header("1. The Seasonal Demand Cycle")
 st.markdown(
-    "New lease signings nearly **double** from winter to summer. "
+    "New lease signings more than **double** from winter to summer. "
+    "Manhattan goes from 3,922 leases in January to 8,223 in August."
 )
 
 df_leases = df_manhattan.dropna(subset=["new_leases"])
@@ -99,10 +100,9 @@ st.plotly_chart(fig_leases, use_container_width=True)
 
 st.header("2. Rent Stays Flat, Volume Explodes")
 st.markdown(
-    "The surprise: Manhattan median rent only varies about $200 across the entire year "
-    "(4,100 to 4,300). The real seasonal shift is in volume and speed, "
-    "not price."
-    # "This means VryfID's value proposition is about speed andcompetition, not cost savings."
+    "The surprise: Manhattan median rent only varies about $234 across the entire year "
+    "($4,100 in Mar to $4,334 in Dec). The real seasonal shift is in **volume and speed**, "
+    "not price. Lease signings more than double while rent barely moves."
 )
 
 df_both = df_manhattan.dropna(subset=["median_rent"])
@@ -187,20 +187,20 @@ with col_right:
     st.subheader("Key Borough Differences")
     st.markdown(
         """
-        **Manhattan** ($4,100 - $4,300)
+        **Manhattan** ($4,100 - $4,334)
         - Highest absolute rents but flattest seasonal variation
-        - Record lease volume in July (7,712)
-        - Most competitive: 24% bidding war rate in June
+        - Record lease volume in August (8,223), more than double January (3,922)
+        - Peak bidding wars: 24% in June, DOM drops to 24 days
         
         **Brooklyn** ($3,495 - $3,695)
-        - Slightly more seasonal rent variation than Manhattan
-        - Record lease signings in May (4,341) and July (4,477)
-        - New construction boom (Gowanus, Downtown BK) adding inventory
+        - Most competitive borough: bidding wars hit 29.9% by December
+        - Record lease signings in August (4,895)
+        - 1 in 4 leases signed above asking even in off-season months
         
-        **NW Queens** ($3,244 - $3,450)
+        **NW Queens** ($3,200 - $3,541)
         - Most affordable of the three tracked markets
-        - Highest percentage of new development listings
-        - Fastest growing inventory year-over-year
+        - Highest percentage of new development listings (25-33%)
+        - Inventory nearly doubled year-over-year, fastest growing market
         """
     )
 
