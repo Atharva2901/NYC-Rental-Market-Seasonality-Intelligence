@@ -16,34 +16,26 @@ from data import (
     vryfid_growth_metrics,
 )
 
-# ============================================================================
-# PAGE CONFIG - must be the first Streamlit command
-# ============================================================================
+
 st.set_page_config(
     page_title="NYC Rental Seasonality | VryfID Growth Intelligence",
     page_icon="📊",
     layout="wide",
 )
 
-# ============================================================================
-# LOAD DATA INTO DATAFRAMES
-# ============================================================================
+
 df_manhattan = pd.DataFrame(manhattan_2024)
 df_brooklyn = pd.DataFrame(brooklyn_2024)
 df_queens = pd.DataFrame(nw_queens_2024)
 
-# ============================================================================
-# HEADER
-# ============================================================================
+
 st.title("NYC Rental Market Seasonality Intelligence")
 st.markdown(
     "**Prepared for VryfID** | Data: Douglas Elliman / Miller Samuel Monthly Reports (2024)"
 )
 st.markdown("---")
 
-# ============================================================================
-# TOP-LEVEL KPIs
-# ============================================================================
+
 metrics = vryfid_growth_metrics
 
 col1, col2, col3, col4 = st.columns(4)
@@ -72,9 +64,6 @@ col4.metric(
 
 st.markdown("---")
 
-# ============================================================================
-# SECTION 1: THE SEASONAL PATTERN
-# ============================================================================
 st.header("1. The Seasonal Demand Cycle")
 st.markdown(
     "New lease signings nearly **double** from winter to summer. "
@@ -108,15 +97,13 @@ fig_leases.update_traces(
 
 st.plotly_chart(fig_leases, use_container_width=True)
 
-# ============================================================================
-# SECTION 2: RENT vs VOLUME
-# ============================================================================
+
 st.header("2. Rent Stays Flat, Volume Explodes")
 st.markdown(
-    "The surprise: Manhattan median rent only varies **$200** across the entire year "
-    "($4,100 to $4,300). The real seasonal shift is in **volume and speed**, "
-    "not price. This means VryfID's value proposition is about **speed and "
-    "competition**, not cost savings."
+    "The surprise: Manhattan median rent only varies about $200 across the entire year "
+    "(4,100 to 4,300). The real seasonal shift is in volume and speed, "
+    "not price. This means VryfID's value proposition is about speed and "
+    "competition, not cost savings."
 )
 
 df_both = df_manhattan.dropna(subset=["median_rent"])
@@ -156,9 +143,7 @@ fig_dual.update_layout(
 
 st.plotly_chart(fig_dual, use_container_width=True)
 
-# ============================================================================
-# SECTION 3: BOROUGH COMPARISON
-# ============================================================================
+
 st.header("3. Borough-Level Patterns")
 
 col_left, col_right = st.columns(2)
@@ -220,9 +205,7 @@ with col_right:
         """
     )
 
-# ============================================================================
-# SECTION 4: THE VRYFID OPPORTUNITY
-# ============================================================================
+
 st.markdown("---")
 st.header("4. What This Means for VryfID")
 st.markdown(
@@ -243,9 +226,7 @@ for season_name, info in seasonal_insights.items():
         with col_b:
             st.info(f"**VryfID Implication:** {info['vryfid_implication']}")
 
-# ============================================================================
-# SECTION 5: STRATEGIC RECOMMENDATIONS
-# ============================================================================
+
 st.markdown("---")
 st.header("5. Growth Calendar Recommendations")
 
@@ -253,7 +234,7 @@ q1, q2, q3, q4 = st.columns(4)
 
 with q1:
     st.markdown("### Q1: Jan-Mar")
-    st.markdown("🎯 **Prepare**")
+    st.markdown(" **Prepare**")
     st.markdown(
         "- Build renter profiles during low competition\n"
         "- Onboard landlords/brokers while they have time\n"
@@ -262,7 +243,7 @@ with q1:
 
 with q2:
     st.markdown("### Q2: Apr-Jun")
-    st.markdown("🚀 **Push Hard**")
+    st.markdown(" **Push Hard**")
     st.markdown(
         "- Peak acquisition window: renters searching 30-60 days early\n"
         "- Highest ROI on marketing spend\n"
@@ -271,7 +252,7 @@ with q2:
 
 with q3:
     st.markdown("### Q3: Jul-Sep")
-    st.markdown("⚡ **Convert**")
+    st.markdown(" **Convert**")
     st.markdown(
         "- Maximum urgency for users already on platform\n"
         "- Push verified profile completion\n"
@@ -280,16 +261,14 @@ with q3:
 
 with q4:
     st.markdown("### Q4: Oct-Dec")
-    st.markdown("🔄 **Retain & Prep**")
+    st.markdown(" **Retain & Prep**")
     st.markdown(
         "- Engage existing users for renewals\n"
         "- Second push to landlords with unfilled inventory\n"
         "- Collect data, iterate, prepare for next spring"
     )
 
-# ============================================================================
-# FOOTER
-# ============================================================================
+
 st.markdown("---")
 st.caption(
     "Analysis by Atharva Deshmukh | Data sourced from Douglas Elliman / "
