@@ -67,7 +67,6 @@ st.markdown("---")
 st.header("1. The Seasonal Demand Cycle")
 st.markdown(
     "New lease signings nearly **double** from winter to summer. "
-    "This is the core pattern VryfID's growth strategy should be built around."
 )
 
 df_leases = df_manhattan.dropna(subset=["new_leases"])
@@ -102,8 +101,8 @@ st.header("2. Rent Stays Flat, Volume Explodes")
 st.markdown(
     "The surprise: Manhattan median rent only varies about $200 across the entire year "
     "(4,100 to 4,300). The real seasonal shift is in volume and speed, "
-    "not price. This means VryfID's value proposition is about speed and "
-    "competition, not cost savings."
+    "not price."
+    # "This means VryfID's value proposition is about speed andcompetition, not cost savings."
 )
 
 df_both = df_manhattan.dropna(subset=["median_rent"])
